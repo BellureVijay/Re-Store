@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card,CardMedia,CardContent,Typography,CardActions,Button,CardHeader,Avatar} from '@mui/material'
+import {NavLink} from 'react-router-dom'
 function ProductCard({product}) {
   return (
     <Card >
@@ -29,7 +30,12 @@ function ProductCard({product}) {
     </CardContent>
     <CardActions>
       <Button size="small">Add to Cart</Button>
-      <Button size="small">View</Button>
+      <Button size="small">
+        <NavLink to={`/catalog/${product.id}`} style={{textDecoration:'none'}}>
+
+        View
+        </NavLink>
+        </Button>
     </CardActions>
   </Card>
   )
