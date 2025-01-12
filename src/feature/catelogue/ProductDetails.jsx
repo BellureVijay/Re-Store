@@ -1,21 +1,23 @@
 import React,{useEffect,useState} from 'react'
 import {Grid,Typography,Divider,TableContainer,Table,TableBody,TableRow,TableCell} from '@mui/material'
 import {useParams} from 'react-router-dom'
-import axios from 'axios'
+import agent from '../../app/api/Agent'
+import LoadingComponent from '../../app/layout/LoadingComponent'
+import NotFound from '../../app/errors/NotFound'
 function ProductDetails() {
   const[Product,setProduct]=useState([])
   const[loading,setLoading]=useState(true)
   const {id}=useParams();
     useEffect(()=>{
-      axios.get( `http://localhost:5000/api/Products/${id}`)
-       .then(response=>setProduct(response.data))
+      id && agent.catalog.details(id)
+       .then(response=>setProduct(response))
        .catch(err=>console.log(err))
        .finally(()=>setLoading(false))
     },[id])
     
     
-    if(loading) return <h3>Loading....</h3>
-    if(!Product) return <h3>Product not found</h3>
+    if(loading) return <LoadingComponent/>
+    if(!Product) return <NotFound/>
   return (
  <Grid container spacing={6}>
     <Grid item xs={6}>

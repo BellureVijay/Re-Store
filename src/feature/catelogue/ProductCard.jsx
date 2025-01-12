@@ -3,7 +3,12 @@ import {Card,CardMedia,CardContent,Typography,CardActions,Button,CardHeader,Avat
 import {NavLink} from 'react-router-dom'
 function ProductCard({product}) {
   return (
-    <Card >
+    <Card sx={{borderRadius:'8px',
+      '&:hover':{
+        borderRadius:"0px",
+        boxShadow:'1px 0px 1px 0.1px black'
+        }
+    }}>
         <CardHeader
          avatar={
             <Avatar sx={{bgcolor:'secondary.main'}}>

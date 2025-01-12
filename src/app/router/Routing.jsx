@@ -7,6 +7,10 @@ import About from '../../feature/about/About'
 import Contact from '../../feature/contact/Contact'
 import Header from '../layout/Header'
 import {createTheme,ThemeProvider,CssBaseline,Container} from '@mui/material'
+import { ToastContainer } from 'react-toastify';
+import ServerError from '../errors/ServerError'
+import NotFound from '../errors/NotFound'
+
 function Routing() {
     const[darktheme,setDarkTheme]=useState(false);
     const palletColor=darktheme?'dark':'light'
@@ -29,6 +33,7 @@ function Routing() {
     
     <BrowserRouter>
      <ThemeProvider theme={Theme}>
+      <ToastContainer position='bottom-right' hideProgressBar theme='colored'/>
     <Header darktheme={darktheme} handleDarkTheme={handleDarkTheme} />
         <CssBaseline/>
         <Container>
@@ -39,6 +44,8 @@ function Routing() {
         <Route path='/catalog/:id' exact element={<ProductDetails/>}/>
         <Route path='/about' exact element={<About/>}/>
         <Route path='/contact' exact element={<Contact/>}/>
+        <Route path='/server-error' exact element={<ServerError/>}/>
+        <Route path='*' exact element={<NotFound/>}/>
       </Routes>
       </Container>
       </ThemeProvider>

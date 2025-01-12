@@ -30,7 +30,7 @@ function Header({ darktheme, handleDarkTheme }) {
          onClick={()=>{handleClick('home')}}>
 
         <Typography sx={
-      {color:"white",
+      {
         '&:hover':{
           color:"grey.500"
         },
@@ -55,7 +55,7 @@ function Header({ darktheme, handleDarkTheme }) {
             >
                <IconButton>
     <Typography  sx={
-      {color:"white",
+      {
         '&:hover':{
           color:"grey.500"
         },
@@ -85,7 +85,7 @@ function Header({ darktheme, handleDarkTheme }) {
                <IconButton>
     <Typography 
      sx={
-      {color:"white",
+      {
         '&:hover':{
           color:"grey.500"
         },

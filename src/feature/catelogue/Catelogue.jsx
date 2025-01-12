@@ -1,14 +1,19 @@
 import React,{useEffect,useState} from 'react'
 import ProductList from './ProductList'
-import {Container} from '@mui/material'
-
+import agent from '../../app/api/Agent'
+import LoadingComponent from '../../app/layout/LoadingComponent'
 function Catelogue() {
   const[products,setProducts]=useState([])
+  const[loading,setLoading]=useState(true)
 
   useEffect(()=>{
-    fetch('http://localhost:5000/api/Products').then(response=>response.json()).then(data=>setProducts(data))
+    agent.catalog.list().then(product=>setProducts(product))
+    .catch(err=>console.log(err))
+    .finally(()=>setLoading(false))
   },[])
-
+if(loading){
+  return <LoadingComponent/>
+}
   return (
     <>
      <ProductList products={products} />
